@@ -1,6 +1,6 @@
 #' MONITORING STATISTIQUE DES ESSAIS : TRAVAUX DE SIMULATION
 #'
-#' MONITORING STATISTIQUE CENTRALISE (CSM) : VARIATION SUR LA MOYENNE SITE
+#' MONITORING STATISTIQUE CENTRALISE (CSM) : DATA GENERATION FOR CONTINUOUS VARIABLE
 #'
 #' @param n.subject
 #' @param n.center default value \code{6}
@@ -17,12 +17,6 @@
 #'
 #' data.generebis( n.subject = n.subject, n.center = n.center, sigma2c = sigma2c, sigma2r = sigma2r,mu = mu,centreAtypic = Taux,delta = DeltaVarie)
 #'
-
-# ## MONITORING STATISTIQUE CENTRALISE (CSM) : VARIATION SUR LA MOYENNE SITE
-# ## Chargement des packages R
-
-# library(dplyr, quietly = TRUE)
-#
 
 
 
