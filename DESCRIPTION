@@ -16,4 +16,7 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 imports:
-  data.table
+  data.table,
+  dplyr,
+  jagsUI,
+  writexl
