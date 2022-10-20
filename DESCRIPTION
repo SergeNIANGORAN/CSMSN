@@ -2,8 +2,8 @@ Package: CSMSN
 Type: Package
 Title: What the Package Does (Title Case)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: Authors@R: c(person("Serge Bessekon", "Niangoran", role = c("aut", "cre"), email = "bessekon.niangoran@u-bordeaux.fr"))
+Maintainer: Serge Bessekon Niangoran <bessekon.niangoran@u-bordeaux.fr>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
@@ -19,4 +19,5 @@ imports:
   data.table,
   dplyr,
   jagsUI,
-  writexl
+  writexl,
+  lme4
