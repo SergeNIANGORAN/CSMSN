@@ -1,6 +1,6 @@
 #' CENTRALIZED STATISTICAL MONITORING : DESMET METHOD
 #'
-#' @param data
+#' @param data a multicenter clinical trial data containing one or several continuous variable
 #'
 #' @return table
 #'
@@ -20,19 +20,21 @@
 
 CONSTRUCT_ZDI <-function(data=data){
 
-  ResultModel<-lmer(y.ij ~ 1 +(1|center),data=data)
+  ResultModel<-lme4::lmer(y.ij ~ 1 +(1|center),data=data)
   summary(ResultModel)
 
-  ParVar <- data.frame(VarCorr(ResultModel))
+  ParVar <- data.frame(lme4::VarCorr(ResultModel))
   SigmaCcarre <- ParVar[1, c(4)]          # Center Variance
   SigmaRcarre <- ParVar[2, c(4)]          # Residual Variance
-  MoyenneGlobale <- data.frame(fixef(ResultModel))[1,]
+  MoyenneGlobale <- data.frame(lme4::fixef(ResultModel))[1,]
 
+  n.center <- length(unique(data$center))
   tab <- data.frame(t(c(1:6)))
   colnames(tab) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT")
 
   for (i in 1:n.center){
     centre.uniq <- subset(data, center==i)
+    n.subject <- nrow(centre.uniq)
 
     temptab <- data.frame(t(c(1:6)))
     colnames(temptab) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT")
