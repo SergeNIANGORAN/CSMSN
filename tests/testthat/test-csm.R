@@ -9,7 +9,15 @@ test_that("CSMSN", {
   # generated data
   res <- data.generebis(n.subject, n.center,sigma2c,sigma2r)
 
-  # test csm bayesian ATAYAMA
-  CONSTRUCT_BAYES(res)
+  # Testing HATAYAMA CSM method using Bayesian Finite Mixture Model
+  #CONSTRUCT_BAYES(res)
 
+  # Testing DESMET CSM method using Mixed Linear Model
+  CONSTRUCT_ZDI(res)
+
+  # Testing Student T-test CSM method
+  CONSTRUCT_TestMOY(res)
+
+  # Testing Distance CSM method
+  CONSTRUCT_DISTANCE(res)
 })
