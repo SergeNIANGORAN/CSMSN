@@ -5,9 +5,9 @@
 #' @param NombreSimul . His default value \code{6}
 #' @param n.center indicate the number of investigative sites in the multicenter trials. His default value \code{6}
 #' @param n.subject is the number of subject in a site (considering that all centers have the same subjects number)
-#' @param  . His default value \code{6}
-#' @param  . His default value \code{6}
 #' @param mu . His default value \code{6}
+#' @param sigma2c . His default value \code{1}
+#' @param sigma2r . His default value \code{4} according the default value of the mean
 #' @import data.table
 #' @return table
 #'
@@ -16,10 +16,6 @@
 #' @import dplyr
 #' @import sqldf
 #' @import tcltk
-#'
-#'SiteAtypiq=5, MaxEcart=5, NombreSimul=5,
-n.subject = 50, n.center = 200, sigma2c = 1,
-sigma2r = 4, mu = 0
 #'
 #' @export
 #'
