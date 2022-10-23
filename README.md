@@ -6,7 +6,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of CSMSN is to …
+The goal of CSMSN is to provide tools for the implementation of the
+differentes methods of centralized statistical monitoring for a
+continuous variable. This consists of comparisons of the variable
+distribution between one center to the distribution of the others
+centers in order to detect center with atypical pattern.
 
 ## Overview
 
