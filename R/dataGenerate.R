@@ -2,8 +2,8 @@
 #'
 #' MONITORING STATISTIQUE CENTRALISE (CSM) : DATA GENERATION FOR CONTINUOUS VARIABLE
 #'
-#' @param n.subject
-#' @param n.center default value \code{6}
+#' @param n.center indicate the number of investigative sites in the multicenter trials. His default value \code{6}
+#' @param n.subject is the number of subject in a site (considering that all centers have the same subjects number)
 #' @import data.table
 #'
 #' @return Table
@@ -15,7 +15,7 @@
 #' sigma2c = 1
 #' sigma2r = 4
 #'
-#' data.generebis( n.subject = n.subject, n.center = n.center, sigma2c = sigma2c, sigma2r = sigma2r,mu = mu,centreAtypic = Taux,delta = DeltaVarie)
+#' data.generebis( n.subject = n.subject, n.center = n.center, sigma2c = sigma2c, sigma2r = sigma2r, mu = mu, centreAtypic = Taux, delta = DeltaVarie)
 #'
 
 
