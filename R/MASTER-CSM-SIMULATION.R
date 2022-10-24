@@ -22,8 +22,8 @@
 #' @examples
 #'
 
-PROGRAM_MASTER_CSM_SIMS_MOY_GLOBAL <-function(NSiteAtypiq=5, MaxEcart=5, NombreSimul=5,
-                                     n.subject = 50, n.center = 200, sigma2c = 1,
+MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=2,
+                                     n.subject = 50, n.center = 10, sigma2c = 1,
                                      sigma2r = 4, mu = 0){
 
   SORTIE_REPLIC_Delta_Taux <- data.frame(t(c(1:22)))
@@ -85,7 +85,7 @@ PROGRAM_MASTER_CSM_SIMS_MOY_GLOBAL <-function(NSiteAtypiq=5, MaxEcart=5, NombreS
 
   Req1 <- "SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(Detect) AS NB_ATYPIQUE, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
 
-  ESSAIPERFO <- sqldf(Req1)
+  ESSAIPERFO <- sqldf::sqldf(Req1)
   ESSAIPERFOTRI <- ESSAIPERFO[order(ESSAIPERFO$Taux, ESSAIPERFO$DeltaMoyenne, ESSAIPERFO$NbreSiteAssig, ESSAIPERFO$Type_Assign),]
   ESSAIPERFOTRI$Cpt <- cumsum(!duplicated(ESSAIPERFOTRI[,c("Taux","DeltaMoyenne")]))
 
@@ -108,7 +108,7 @@ PROGRAM_MASTER_CSM_SIMS_MOY_GLOBAL <-function(NSiteAtypiq=5, MaxEcart=5, NombreS
 
   Req_Bay <- " SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(Flag) AS NB_ATYPIQUE_BAY, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
 
-  ESSAIPERFO_BAY <- sqldf(Req_Bay)
+  ESSAIPERFO_BAY <- sqldf::sqldf(Req_Bay)
   ESSAIPERFOTRI_BAY <- ESSAIPERFO_BAY[order(ESSAIPERFO_BAY$Taux, ESSAIPERFO_BAY$DeltaMoyenne, ESSAIPERFO_BAY$NbreSiteAssig, ESSAIPERFO_BAY$Type_Assign),]
   ESSAIPERFOTRI_BAY$Cpt <- cumsum(!duplicated(ESSAIPERFOTRI_BAY[,c("Taux","DeltaMoyenne")]))
 
@@ -132,7 +132,7 @@ PROGRAM_MASTER_CSM_SIMS_MOY_GLOBAL <-function(NSiteAtypiq=5, MaxEcart=5, NombreS
   ASSIGNATION_MOY$Detect_TT = ifelse(ASSIGNATION_MOY$TestMoyenne < 0.05, 1, 0)
   Req2 <- "SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(Detect_TT) AS NB_ATYPIQ_TT, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
 
-  ESSAIPERFO_TT <- sqldf(Req2)
+  ESSAIPERFO_TT <- sqldf::sqldf(Req2)
   ESSAIPERFOTRI_TT <- ESSAIPERFO_TT[order(ESSAIPERFO_TT$Taux, ESSAIPERFO_TT$DeltaMoyenne, ESSAIPERFO_TT$NbreSiteAssig, ESSAIPERFO_TT$Type_Assign),]
   ESSAIPERFOTRI_TT$Cpt <- cumsum(!duplicated(ESSAIPERFOTRI_TT[,c("Taux","DeltaMoyenne")]))
 
@@ -155,7 +155,7 @@ PROGRAM_MASTER_CSM_SIMS_MOY_GLOBAL <-function(NSiteAtypiq=5, MaxEcart=5, NombreS
 
   Req3 <- "SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(DistDetect_i) AS NB_ATYPIQ_DIST, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
 
-  ESSAIPERFO_DIST <- sqldf(Req3)
+  ESSAIPERFO_DIST <- sqldf::sqldf(Req3)
   ESSAIPERFOTRI_DIST <- ESSAIPERFO_DIST[order(ESSAIPERFO_DIST$Taux, ESSAIPERFO_DIST$DeltaMoyenne, ESSAIPERFO_DIST$NbreSiteAssig, ESSAIPERFO_DIST$Type_Assign),]
   ESSAIPERFOTRI_DIST$Cpt <- cumsum(!duplicated(ESSAIPERFOTRI_DIST[,c("Taux","DeltaMoyenne")]))
 
