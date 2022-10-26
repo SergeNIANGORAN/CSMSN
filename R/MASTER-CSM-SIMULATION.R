@@ -1,11 +1,11 @@
 #' CENTRALIZED STATISTICAL MONITORING : MASTER PROGRAM FOR CSM SIMULATION
 #'
-#' @param SiteAtypiq . His default value \code{6}
+#' @param SiteAtypiq is the maximum number of atypical site in the simulations, that is the number of atypical site will varying from 1 to SiteAtypiq. His default value \code{6}
 #' @param MaxEcart . His default value \code{6}
 #' @param NombreSimul . His default value \code{6}
 #' @param n.center indicate the number of investigative sites in the multicenter trials. His default value \code{6}
 #' @param n.subject is the number of subject in a site (considering that all centers have the same subjects number)
-#' @param mu . His default value \code{6}
+#' @param mu is the mean of the non atypical centers. His default value \code{10}
 #' @param sigma2c . His default value \code{1}
 #' @param sigma2r . His default value \code{4} according the default value of the mean
 #' @import data.table

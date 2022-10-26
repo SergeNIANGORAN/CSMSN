@@ -22,8 +22,9 @@ distribution in a multicenter clinical trial with a shift in the mean of
 one center, and four functions which performs the CSM method of
 **Desmet**, **Hatayama**, **Student** and **Distance**.
 
-The main function of this package which compiles and performs all the
-four methods together is `PROGRAM_MAITRE_CSM()`.
+The main function of this package which compiles and performs the
+simulations of all the four methods together is
+`MASTER_CSM_MOY_GLOBAL_SIMS()`.
 
 The methods implemented in this package are detailed in the following
 article:
