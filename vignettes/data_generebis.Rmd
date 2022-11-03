@@ -1,5 +1,7 @@
 ---
 title: "data generebis"
+author: "Serge Niangoran"
+date : "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{data generebis}
@@ -14,7 +16,30 @@ knitr::opts_chunk$set(
 )
 ```
 
+## HEADING
+**Introduction** <br/>
+*INFORMATION*  <br/>
+
+The data collected during multicenter clinical trials are generally organized according to a hierarchical structure in which the participants (mostly patients) in the clinical trial are included in the health centers (investigator centers), which centers are all governed by the same clinical trial protocol. In this logic, we therefore have the investigating centers at the first level of data grouping, then the patients at the second level.
+
+Thus, the construction of simulation samples for the implementation of centralized statistical monitoring (CSM) on a continuous variable, took into account this hierarchical organization of the data, by integrating a heterogeneity linked to the sites and a residual variability of each participant.
+
+
 ```{r setup}
 library(CSMSN)
+
+n.subject = 50
+n.center = 10
+mu = 10
+sigma2c = 1
+sigma2r = 4
+centreAtypic = 3
+delta = 10
+
+bdata <- data.generebis(n.subject = n.subject, n.center = n.center,
+                        mu = mu, sigma2c = sigma2c, sigma2r = sigma2r,
+                        centreAtypic = centreAtypic, delta = delta)
+
+head(bdata)
 
 ```
