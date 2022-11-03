@@ -2,7 +2,7 @@
 #'
 #' @param SiteAtypiq is the maximum number of atypical site in the simulations, that is the number of atypical site will varying from 1 to SiteAtypiq. His default value \code{6}
 #' @param MaxEcart . His default value \code{6}
-#' @param NombreSimul . His default value \code{6}
+#' @param NombreSimul a number of replications of simulations. His default value is \code{5}
 #' @param n.center indicate the number of investigative sites in the multicenter trials. His default value \code{6}
 #' @param n.subject is the number of subject in a site (considering that all centers have the same subjects number)
 #' @param mu is the mean of the non atypical centers. His default value \code{10}
@@ -22,7 +22,7 @@
 #' @examples
 #'
 
-MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=2,
+MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=5,
                                      n.subject = 50, n.center = 10, sigma2c = 1,
                                      sigma2r = 4, mu = 0){
 
