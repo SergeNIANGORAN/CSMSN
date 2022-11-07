@@ -20,31 +20,35 @@
 
 CONSTRUCT_ZDI <-function(data=data){
 
-  ResultModel<-lme4::lmer(y.ij ~ 1 +(1|center),data=data)
+  ResultModel<-lmer(y.ij ~ 1 +(1|center),data=data)
   summary(ResultModel)
 
-  ParVar <- data.frame(lme4::VarCorr(ResultModel))
-  SigmaCcarre <- ParVar[1, c(4)]          # Center Variance
-  SigmaRcarre <- ParVar[2, c(4)]          # Residual Variance
-  MoyenneGlobale <- data.frame(lme4::fixef(ResultModel))[1,]
+  ParVar <- data.frame(VarCorr(ResultModel))
+  SigmaCcarre <- ParVar[1, c(4)]          # Center variance
+  SigmaRcarre <- ParVar[2, c(4)]          # Residual variance
+  MoyenneGlobale <- data.frame(fixef(ResultModel))[1,]
 
-  n.center <- length(unique(data$center))
-  tab <- data.frame(t(c(1:6)))
-  colnames(tab) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT")
+  Vecteur_centre <- unique(data$center)
 
-  for (i in 1:n.center){
-    centre.uniq <- subset(data, center==i)
+  #  n.center <- length(unique(data$center))
+  tab <- data.frame(t(c(1:7)))
+  colnames(tab) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT","Detect_Zi")
+
+  for (i in 1:length(Vecteur_centre)){
+    Valeur_du_site <- Vecteur_centre[i]
+    centre.uniq <- subset(data, center==Valeur_du_site)
     n.subject <- nrow(centre.uniq)
 
-    temptab <- data.frame(t(c(1:6)))
-    colnames(temptab) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT")
+    temptab <- data.frame(t(c(1:7)))
+    colnames(temptab) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT","Detect_Zi")
 
-    temptab$Site <- i
-    temptab$MoyenCentre <- mean(centre.uniq$y.ij)
-    temptab$DiffMoyenne = temptab$MoyenCentre - MoyenneGlobale
-    temptab$Denominateur = SigmaCcarre + SigmaRcarre/n.subject
+    temptab$Site <- Vecteur_centre[i]
+    temptab$MoyenCentre <- mean(centre.uniq$y.ij, na.rm=TRUE)
+    temptab$DiffMoyenne = round((temptab$MoyenCentre - MoyenneGlobale),4)
+    temptab$Denominateur = round((SigmaCcarre + SigmaRcarre/n.subject),4)
     temptab$ZSitei = (temptab$MoyenCentre - MoyenneGlobale)/sqrt(SigmaCcarre + SigmaRcarre/n.subject)
-    temptab$ProbT = 2*pnorm(-abs(temptab$ZSitei))
+    temptab$ProbT = round(2*pnorm(-abs(temptab$ZSitei)),4)
+    temptab$Detect_Zi = ifelse(temptab$ProbT < 0.05, 1, 0)
 
     tab <- rbind(
       tab, temptab)
