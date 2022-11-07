@@ -15,16 +15,16 @@
 ## Student t-test CSM method for mean comparisons
 
 CONSTRUCT_TestMOY <-function(data=data){
-  tab <- data.frame(t(c(1:4)))
-  colnames(tab) <- c("Site","MoySite","MoyAutrSite","TestMoyenne")
-  n.center <- length(unique(data$center))
 
-  for (i in 1:n.center){
+  Vecteur_centre <- unique(data$center)
+  tab <- data.frame(t(c(1:5)))
+  colnames(tab) <- c("Site","MoySite","MoyAutrSite","TestMoyenne","Detect_TT")
+  for (i in 1:length(Vecteur_centre)){
     tab.data <- data
-    centre.uniq <- subset(tab.data, center==i)
-    centre.uniq.Diff <- subset(tab.data, !(center==i))
+    centre.uniq <- subset(tab.data, center== Vecteur_centre[i])
+    centre.uniq.Diff <- subset(tab.data, !(center==Vecteur_centre[i]))
 
-    tab.data$SiteRef <-ifelse(tab.data$center == i, 1, 0)
+    tab.data$SiteRef <-ifelse(tab.data$center == Vecteur_centre[i], 1, 0)
     tempTestVar <- var.test(y.ij ~ SiteRef, data = tab.data)$p.value
 
     if(tempTestVar >= 0.05){
@@ -34,16 +34,15 @@ CONSTRUCT_TestMOY <-function(data=data){
       tempTestMoyenne <- t.test(y.ij ~ SiteRef, data = tab.data, var.equal=F)$p.value
     }
 
-    temptab <- data.frame(t(c(1:4)))
-    colnames(temptab) <-c("Site","MoySite","MoyAutrSite","TestMoyenne")
+    temptab <- data.frame(t(c(1:5)))
+    colnames(temptab) <-c("Site","MoySite","MoyAutrSite","TestMoyenne","Detect_TT")
 
-    temptab$Site <- i
-    temptab$MoySite <- mean(centre.uniq$y.ij)
-    temptab$MoyAutrSite <- mean(centre.uniq.Diff$y.ij)
+    temptab$Site <- Vecteur_centre[i]
+    temptab$MoySite <- mean(centre.uniq$y.ij, na.rm=TRUE)
+    temptab$MoyAutrSite <- mean(centre.uniq.Diff$y.ij, na.rm=TRUE)
     temptab$TestMoyenne <- tempTestMoyenne
-
-    tab.data <- tab.data[,c(1:6)]
-
+    temptab$Detect_TT = ifelse(temptab$TestMoyenne < 0.05, 1, 0)
+    tab.data <- tab.data[,c(1:4)]
     tab <- rbind(
       tab, temptab)
   }
