@@ -43,7 +43,7 @@ APPLICATION_CSM_MOY_GLOBAL <-function(data=data){
   RESULT_REPLIC <- rbind(RESULT_REPLIC, RESULT_SIMUL)
   RESULT_REPLIC_SORTIE <- RESULT_REPLIC[-1,]
 
-  data_restreint <- unique(data[,c("center","CENTER_NAME","MeanSite","EcartypeSite")]) %>% rename(Site=center)
+  data_restreint <- unique(data[,c("center","MeanSite","EcartypeSite")]) %>% dplyr::rename(Site=center)
   RESULT_REPLIC_SORTIE <- merge(data_restreint, RESULT_REPLIC_SORTIE, by=c("Site"))
 
   return(RESULT_REPLIC_SORTIE)
