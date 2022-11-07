@@ -24,14 +24,14 @@
 #' @examples
 #'
 
-MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=5,
-                                     n.subject = 50, n.center = 10, sigma2c = 1,
+MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=1, MaxEcart=2, NombreSimul=2,
+                                     n.subject = 50, n.center = 6, sigma2c = 1,
                                      sigma2r = 4, mu = 0){
 
-  SORTIE_REPLIC_Delta_Taux <- data.frame(t(c(1:22)))
-  colnames(SORTIE_REPLIC_Delta_Taux) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT",
+  SORTIE_REPLIC_Delta_Taux <- data.frame(t(c(1:24)))
+  colnames(SORTIE_REPLIC_Delta_Taux) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT","Detect_Zi",
                                          "Effectif", "MeanVal","Seuil_05","Seuil_95","Flag",
-                                         "MoySite","MoyAutrSite","TestMoyenne",
+                                         "MoySite","MoyAutrSite","TestMoyenne","Detect_TT",
                                          "MoyenneGlobaleD","VarianceGlobale","Distancei","Predict_i","DistDetect_i",
                                          "NbSimulation","DeltaMoyenne","Taux")
 
@@ -41,9 +41,9 @@ MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=5,
     for (DeltaVarie in 1:MaxEcart){
       # message(glue::glue("Scenario execute : {Taux} sites atypiques, soit un taux de {round(Taux/n.center*100,1)} et un ecart a la moyenne de {DeltaVarie} "))
 
-      RESULT_REPLIC <- data.frame(t(c(1:20)))
-      colnames(RESULT_REPLIC) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT",
-                                  "MoySite","MoyAutrSite","TestMoyenne",
+      RESULT_REPLIC <- data.frame(t(c(1:22)))
+      colnames(RESULT_REPLIC) <-c("Site","MoyenCentre","DiffMoyenne","Denominateur","ZSitei","ProbT","Detect_Zi",
+                                  "MoySite","MoyAutrSite","TestMoyenne","Detect_TT",
                                   "MoyenneGlobaleD","VarianceGlobale","Distancei","Predict_i","DistDetect_i",
                                   "Effectif", "MeanVal","Seuil_05","Seuil_95","Flag","NbSimulation")
 
@@ -83,9 +83,8 @@ MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=5,
 
   ASSIGNATION_MOY$TauPercent <- round(ASSIGNATION_MOY$Taux/n.center*100, 0)
   ASSIGNATION_MOY$Type_Assign = ifelse(ASSIGNATION_MOY$Site >= (n.center - ASSIGNATION_MOY$Taux + 1), 1, 2)
-  ASSIGNATION_MOY$Detect = ifelse(ASSIGNATION_MOY$ProbT < 0.05, 1, 0)
 
-  Req1 <- "SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(Detect) AS NB_ATYPIQUE, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
+  Req1 <- "SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(Detect_Zi) AS NB_ATYPIQUE, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
 
   ESSAIPERFO <- sqldf::sqldf(Req1)
   ESSAIPERFOTRI <- ESSAIPERFO[order(ESSAIPERFO$Taux, ESSAIPERFO$DeltaMoyenne, ESSAIPERFO$NbreSiteAssig, ESSAIPERFO$Type_Assign),]
@@ -131,7 +130,6 @@ MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=5,
   SPEC_RESULT_BAY$SCENARIO <- SPEC_RESULT_BAY$Cpt
   SPEC_RESULT_BAY <- SPEC_RESULT_BAY[, c(8:11)]
 
-  ASSIGNATION_MOY$Detect_TT = ifelse(ASSIGNATION_MOY$TestMoyenne < 0.05, 1, 0)
   Req2 <- "SELECT COUNT(Distinct Site) AS NbreSiteAssig, SUM(Detect_TT) AS NB_ATYPIQ_TT, MAX(NbSimulation) AS NbreReplic, DeltaMoyenne, Taux, Type_Assign FROM ASSIGNATION_MOY GROUP BY DeltaMoyenne, Taux, Type_Assign;"
 
   ESSAIPERFO_TT <- sqldf::sqldf(Req2)
@@ -190,4 +188,3 @@ MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=2, MaxEcart=5, NombreSimul=5,
   RESULT_PERFORMANCE$TauPercent <- round(RESULT_PERFORMANCE$Taux/n.center*100, 0)
   return(list(RESULT_PERFORMANCE,ASSIGNATION_MOY))
 }
-
