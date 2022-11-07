@@ -11,7 +11,7 @@
 #' @import data.table
 #' @import jagsUI
 #' @import dplyr
-#'
+#' @import magrittr
 #'
 #' @export
 #'
@@ -135,18 +135,6 @@ model {
     }
     Temp2 <- do.call(rbind, Temp)
     Temp2 <- Temp2[order(Temp2$rand),]
-
-    # Temp2$repli[1] <- 1
-    # Temp2$repli_n[1] <- 1
-    #  for(z in 2:nrow(Temp2)){
-    #    Temp2$repli[z] <- Temp2$repli[z-1] + 1
-    #    Temp2$repli_n[z] <- Temp2$repli_n[z-1]
-    #    if(Temp2$repli[z] > repn_Site){
-    #      Temp2$repli[z] <- 1
-    #      Temp2$repli_n[z] <- Temp2$repli_n[z-1] + 1
-    #      z <- z + 1
-    #    }
-    #  }
 
     Temp2$repli<-rep(1:repn_Site,nrow(Temp2)/repn_Site)
     Temp2$repli_n<-rep(1:(nrow(Temp2)/repn_Site), each=repn_Site)
