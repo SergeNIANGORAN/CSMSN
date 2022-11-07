@@ -12,6 +12,8 @@
 #' @return table
 #'
 #' @import data.table
+#' @import magrittr
+#' @import stats
 #' @import lme4
 #' @import dplyr
 #' @import sqldf

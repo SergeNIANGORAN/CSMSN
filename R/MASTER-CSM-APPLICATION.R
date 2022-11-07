@@ -20,8 +20,8 @@
 ## Construction du Programme Maître
 
 APPLICATION_CSM_MOY_GLOBAL <-function(data=data){
-  data <- data.table(data)
-  EcartType_Tab <- data %>% group_by(center) %>% summarise(EcartypeSite=sd(y.ij_NCR, na.rm = TRUE),
+  data <- data.table::data.table(data)
+  EcartType_Tab <- data %>% dplyr::group_by(center) %>% dplyr::summarise(EcartypeSite=sd(y.ij_NCR, na.rm = TRUE),
                                                            MeanSite=mean(y.ij_NCR, na.rm = TRUE))
   data <- merge(data, EcartType_Tab, by=c("center"))
   data$y.ij <- (data$y.ij_NCR-mean(data$y.ij_NCR, na.rm=T))/data$EcartypeSite
