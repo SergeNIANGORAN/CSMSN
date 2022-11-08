@@ -9,7 +9,7 @@
 #' @param sigma2c . His default value \code{1}
 #' @param sigma2r . His default value \code{4} according the default value of the mean
 #' @import data.table
-#' @return table
+#' @return list of tables that contains in one the performance (ie sensitivity and specificity) of methods, and in the other the assignation data
 #'
 #' @import data.table
 #' @import magrittr
