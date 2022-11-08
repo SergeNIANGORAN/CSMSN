@@ -13,15 +13,18 @@ test_that("CSMSN", {
   CONSTRUCT_BAYES(res)
 
   # Testing DESMET CSM method using Mixed Linear Model
-   CONSTRUCT_ZDI(res)
+  CONSTRUCT_ZDI(res)
 
   # Testing Student T-test CSM method
-   CONSTRUCT_TestMOY(res)
+  CONSTRUCT_TestMOY(res)
 
   # Testing Distance CSM method
-   CONSTRUCT_DISTANCE(res)
+  CONSTRUCT_DISTANCE(res)
 
-  # Testing the Master CSM program function
+  # Testing the Master CSM program function for simulations
   MASTER_CSM_MOY_GLOBAL_SIMS()
+
+  # Testing the Master CSM program function for applications
+  APPLICATION_CSM_MOY_GLOBAL(res)
 
 })
