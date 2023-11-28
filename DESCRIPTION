@@ -1,7 +1,7 @@
 Package: CSMSN
 Type: Package
 Title: Centralized Statistical Monitoring for continuous variable in a multicenter trial
-Version: 0.1.0
+Version: 0.0.0.1
 Author: Authors@R: c(person("Serge Bessekon", "Niangoran", role = c("aut", "cre"), email = "bessekon.niangoran@u-bordeaux.fr"))
 Maintainer: Serge Bessekon Niangoran <bessekon.niangoran@u-bordeaux.fr>
 Description: Provide tools for the implementation of the differentes methods
