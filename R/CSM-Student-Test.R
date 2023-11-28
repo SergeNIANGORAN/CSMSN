@@ -4,14 +4,11 @@
 #'
 #' @return table
 #'
-#' @import data.table
+#' @importFrom data.table data.table
 #' @import dplyr
 #'
 #'
 #' @export
-#'
-#' @examples
-#'
 ## Student t-test CSM method for mean comparisons
 
 CONSTRUCT_TestMOY <-function(data=data){

@@ -20,9 +20,6 @@
 #' @import tcltk
 #'
 #' @export
-#'
-#' @examples
-#'
 
 MASTER_CSM_MOY_GLOBAL_SIMS <-function(NSiteAtypiq=1, MaxEcart=2, NombreSimul=2,
                                      n.subject = 50, n.center = 6, sigma2c = 1,

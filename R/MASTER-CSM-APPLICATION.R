@@ -13,9 +13,6 @@
 #' @import tcltk
 #'
 #' @export
-#'
-#' @examples
-#'
 
 ## Construction du Programme Maître
 

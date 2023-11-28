@@ -4,13 +4,10 @@
 #'
 #' @return table
 #'
-#' @import data.table
+#' @importFrom data.table data.table
 #' @import dplyr
 #'
 #' @export
-#'
-#' @examples
-#'
 
 ### Développement du test de calcul de distance
 

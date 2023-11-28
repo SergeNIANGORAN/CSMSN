@@ -8,16 +8,12 @@
 #'
 #' @return Table
 #'
-#' @import data.table
+#' @importFrom data.table data.table
 #' @import jagsUI
 #' @import dplyr
 #' @import VGAM
 #'
 #' @export
-#'
-#' @examples
-#'
-
 
 CSM_BETA_BINOMIAL_SIMS <- function(bdata=bdata){
 

@@ -14,9 +14,6 @@
 #' @import magrittr
 #'
 #' @export
-#'
-#' @examples
-#'
 
 
 CONSTRUCT_BAYES <-function(dataHatayama){

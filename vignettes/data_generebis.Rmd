@@ -25,21 +25,21 @@ The data collected during multicenter clinical trials are generally organized ac
 Thus, the construction of simulation samples for the implementation of centralized statistical monitoring (CSM) on a continuous variable, took into account this hierarchical organization of the data, by integrating a heterogeneity linked to the sites and a residual variability of each participant.
 
 
-```{r setup}
-library(CSMSN)
+<!-- ```{r setup} -->
+<!-- library(CSMSN) -->
 
-n.subject = 50
-n.center = 10
-mu = 10
-sigma2c = 1
-sigma2r = 4
-centreAtypic = 3
-delta = 10
+<!-- n.subject = 50 -->
+<!-- n.center = 10 -->
+<!-- mu = 10 -->
+<!-- sigma2c = 1 -->
+<!-- sigma2r = 4 -->
+<!-- centreAtypic = 3 -->
+<!-- delta = 10 -->
 
-bdata <- data.generebis(n.subject = n.subject, n.center = n.center,
-                        mu = mu, sigma2c = sigma2c, sigma2r = sigma2r,
-                        centreAtypic = centreAtypic, delta = delta)
+<!-- bdata <- data.generebis(n.subject = n.subject, n.center = n.center, -->
+<!--                         mu = mu, sigma2c = sigma2c, sigma2r = sigma2r, -->
+<!--                         centreAtypic = centreAtypic, delta = delta) -->
 
-head(bdata)
+<!-- head(bdata) -->
 
-```
+<!-- ``` -->

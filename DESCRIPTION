@@ -6,6 +6,17 @@ Author: Authors@R: c(person("Serge Bessekon", "Niangoran", role = c("aut", "cre"
 Maintainer: Serge Bessekon Niangoran <bessekon.niangoran@u-bordeaux.fr>
 Description: Provide tools for the implementation of the differentes methods
             of centralized statistical monitoring for a continuous variable.
+Imports:
+  data.table,
+  dplyr,
+  magrittr,
+  stats,
+  jagsUI,
+  writexl,
+  lme4,
+  sqldf,
+  tcltk,
+  VGAM
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -15,13 +26,4 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Config/testthat/edition: 3
-imports:
-  data.table,
-  dplyr,
-  magrittr,
-  stats,
-  jagsUI,
-  writexl,
-  lme4,
-  sqldf,
-  tcltk
+RoxygenNote: 7.2.3

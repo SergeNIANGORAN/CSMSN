@@ -4,15 +4,12 @@
 #'
 #' @return table
 #'
-#' @import data.table
+#' @importFrom data.table data.table
 #' @import lme4
 #' @import dplyr
 #'
 #'
 #' @export
-#'
-#' @examples
-#'
 
 
 
