@@ -15,7 +15,6 @@ CONSTRUCT_DISTANCE <-function(data=data){
 
   MoyenneGlobaleD <- mean(data$y.ij)        # Moyenne Globale
   VarianceGlobale <- var(data$y.ij)        # Variance Globale
-
   tab <- data.frame(t(c(1:6)))
   colnames(tab) <-c("Site","MoyenneGlobaleD","VarianceGlobale","Distancei","Predict_i","DistDetect_i")
   n.center <- length(unique(data$center))
